@@ -1,33 +1,32 @@
 package domain;
 
-public class Elemento {
-    private final String nombre;
+import exceptions.ElementoInvalidoException;
+import exceptions.NombreInvalidoException;
 
-    public Elemento(String nombre) {
-        this.nombre = nombre;
+public class Elemento extends EntidadJuego {
+
+    public Elemento(String nombre) throws ElementoInvalidoException, NombreInvalidoException {
+        super(validarYNormalizarElemento(nombre));
     }
 
-    public String getNombre() {
-        return nombre;
+    private static String validarYNormalizarElemento(String nombre) throws ElementoInvalidoException, NombreInvalidoException {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new ElementoInvalidoException("El nombre del elemento no puede estar vacío");
+        }
+
+        String nombreLower = nombre.toLowerCase().trim();
+        if (!nombreLower.equals("fuego") && !nombreLower.equals("agua") && 
+            !nombreLower.equals("aire") && !nombreLower.equals("tierra")) {
+            throw new ElementoInvalidoException("Elemento inválido: '" + nombre + "'. " +
+                    "Los elementos válidos son: fuego, agua, aire, tierra");
+        }
+        
+        return nombreLower;
     }
 
     @Override
     public String toString() {
         return "Elemento [nombre=" + nombre + "]";
     }
-
-    public boolean ganaA(Elemento otro) {
-        switch (nombre) {
-            case "fuego":
-                return otro.nombre.equals("tierra");
-            case "agua":
-                return otro.nombre.equals("fuego");
-            case "aire":
-                return otro.nombre.equals("agua");
-            case "tierra":
-                return otro.nombre.equals("aire");
-            default:
-                return false;
-        }
-    }
 }
+
