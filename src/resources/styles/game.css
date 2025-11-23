@@ -1,0 +1,74 @@
+/* Estilos globales */
+.root {
+    -fx-font-family: "System";
+}
+
+/* Botones generales */
+.button {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);
+}
+
+.button:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 15, 0, 0, 7);
+}
+
+/* Barras de progreso (HP) */
+.progress-bar {
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width: 2;
+    -fx-border-color: white;
+}
+
+.progress-bar .track {
+    -fx-background-color: rgba(50, 50, 50, 0.7);
+    -fx-background-radius: 15;
+}
+
+.progress-bar .bar {
+    -fx-background-radius: 15;
+    -fx-padding: 0.5em;
+}
+
+/* TextArea (Combat Log) */
+.text-area {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #444;
+    -fx-border-width: 2;
+}
+
+.text-area .content {
+    -fx-background-color: #1a1a2e;
+    -fx-background-radius: 10;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content {
+    -fx-background-color: #1a1a2e;
+}
+
+/* Scrollbar personalizada */
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #555;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: #2a2a2a;
+    -fx-background-radius: 5;
+}
+
+/* Animaciones y transiciones */
+@keyframes pulse {
+    0% { -fx-scale-x: 1; -fx-scale-y: 1; }
+    50% { -fx-scale-x: 1.05; -fx-scale-y: 1.05; }
+    100% { -fx-scale-x: 1; -fx-scale-y: 1; }
+}

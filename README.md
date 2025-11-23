@@ -1,6 +1,14 @@
 ## Círculo Primal – Batallas Elementales
 
-Juego de consola simple en Java inspirado en duelos por turnos al estilo Pokémon. Elige un elemento y enfréntate a oponentes controlados por la computadora. Gana varias batallas seguidas para potenciar a tu personaje.
+Juego de batallas por turnos con interfaz gráfica JavaFX inspirado en duelos estilo Pokémon. Elige un elemento y enfréntate a oponentes controlados por la computadora en combates visuales con animaciones y efectos.
+
+### 🎮 Características
+
+- **Interfaz Gráfica** con JavaFX: menús visuales, animaciones de batalla y efectos
+- **Sistema de Combate por Turnos**: ataques con efectividad elemental y variación de daño
+- **Animaciones**: movimientos de ataque, sacudidas al recibir daño, efectos de victoria/derrota
+- **Sistema de Rachas**: bonificaciones permanentes por victorias consecutivas
+- **Log de Combate**: historial detallado de cada acción durante la batalla
 
 ### Elementos
 Cuatro tipos básicos:
@@ -38,20 +46,54 @@ Se lleva una racha de victorias por cada elemento que uses.
 - Perder reinicia la racha de ese elemento (los bonos ya ganados se mantienen).
 
 ### Cómo Jugar
-Compila y ejecuta:
+
+#### Requisitos
+- Java 11 o superior con JavaFX
+- En Ubuntu/Debian: `sudo apt install openjdk-21-jdk openjfx`
+
+#### Compilar y Ejecutar (Versión Gráfica)
+
+```bash
+./run-javafx.sh
+```
+
+O manualmente:
+
+```bash
+javac --module-path /usr/share/openjfx/lib \
+      --add-modules javafx.controls,javafx.fxml \
+      -d bin $(find src -name '*.java')
+
+java --module-path /usr/share/openjfx/lib \
+     --add-modules javafx.controls,javafx.fxml \
+     -cp bin MainApp
+```
+
+#### Compilar y Ejecutar (Versión Consola - legacy)
 
 ```bash
 javac -d bin $(find src -name '*.java')
 java -cp bin App
 ```
 
-Luego:
-1. Elige un elemento válido.
-2. En cada turno selecciona tipo de ataque: `r` o `e`.
-3. Observa las barras de vida y adapta tu estrategia.
-4. Decide si continuar tras cada batalla.
+#### Controles del Juego
 
-### Ejemplo de Sesión
+**Versión Gráfica (JavaFX):**
+1. **Menú Principal**: Haz clic en "INICIAR BATALLA"
+2. **Selección de Elemento**: Haz clic en uno de los 4 elementos disponibles
+3. **Durante la Batalla**: 
+   - Haz clic en "⚡ ATAQUE RÁPIDO" (100% precisión, daño normal)
+   - Haz clic en "💥 ATAQUE ELEMENTAL" (80% precisión, +20% daño)
+4. Observa las barras de vida y el log de combate
+5. Al finalizar, regresa al menú principal para otra batalla
+
+**Versión Consola (legacy):**
+1. Elige un elemento válido (fuego, agua, aire, tierra)
+2. En cada turno selecciona tipo de ataque: `r` o `e`
+3. Observa las barras de vida y adapta tu estrategia
+4. Decide si continuar tras cada batalla
+
+### Ejemplo de Sesión (Consola)
 ```
 🔥💧🌪️🌍 Bienvenido al juego de los elementos (modo combate) 🌍🌪️💧🔥
 Elige un elemento (fuego, agua, aire, tierra): fuego
@@ -68,14 +110,53 @@ Tu rapido hace 21 de daño.
 
 ```
 src/
-	App.java                # Punto de entrada
-	domain/Elemento.java    # Modelo del personaje + lógica de daño
-	services/JuegoService.java # Lógica del loop de juego y rachas
+  MainApp.java                    # Punto de entrada JavaFX
+  App.java                        # Punto de entrada consola (legacy)
+  domain/
+    Elemento.java                 # Modelo del personaje + lógica de daño
+  services/
+    JuegoService.java             # Lógica del loop de juego (consola)
+  ui/
+    GameController.java           # Controlador principal de vistas
+    MainMenuView.java             # Vista del menú principal
+    ElementSelectionView.java     # Vista de selección de elementos
+    BattleView.java               # Vista de batalla con animaciones
+  resources/
+    styles/
+      game.css                    # Estilos visuales del juego
 ```
 
-### Próximas Mejores Ideas (no implementadas aún)
-- Diferentes stats por elemento (ej: agua más HP, aire más precisión).
-- Ataques especiales con cooldown.
-- Guardar progreso de rachas en archivo.
+### 🎨 Características Visuales
+
+- **Gradientes de fondo** oscuros para ambiente de batalla
+- **Colores por elemento**: cada elemento tiene su paleta única
+- **Animaciones fluidas**: 
+  - Movimiento de ataque hacia adelante
+  - Sacudida del objetivo al recibir daño
+  - Efectos de escala en victoria
+  - Fade out en derrota
+- **Barras de HP animadas** con colores según jugador/enemigo
+- **Log de combate** con scroll automático
+- **Efectos hover** en todos los botones
+
+### Próximas Mejoras Ideas (no implementadas aún)
+- Diferentes stats por elemento (ej: agua más HP, aire más precisión)
+- Ataques especiales con cooldown y efectos visuales únicos
+- Guardar progreso de rachas en archivo
+- Música y efectos de sonido
+- Modo multijugador local
+- Partículas y efectos visuales avanzados
+
+---
+
+### 📸 Screenshots
+
+La interfaz incluye:
+- **Menú Principal**: Botones grandes con gradientes y hover effects
+- **Selección de Elemento**: 4 botones visuales con emojis gigantes
+- **Pantalla de Batalla**: Sprites de personajes, barras HP animadas, botones de ataque
+- **Log de Combate**: Panel lateral con historial detallado
+
+---
 
 ¡Disfruta y experimenta! Aporta ideas con un PR si quieres ampliar el juego.
