@@ -5,13 +5,24 @@ import services.JuegoService;
  * Inicializa el servicio de juego y arranca el bucle de batallas elementales.
  */
 public class App {
-    /**
-     * Método main - crea una instancia del servicio de juego y lo inicia.
-     * 
-     * @param args argumentos de línea de comandos (no utilizados)
-     */
-    public static void main(String[] args) throws Exception {
-        JuegoService juego = new JuegoService();
-        juego.iniciarJuego();
+    public static void main(String[] args) {
+        JuegoService juego = null;
+        try {
+            juego = new JuegoService();
+            boolean seguirJugando = true;
+
+            while (seguirJugando) {
+                juego.iniciarJuego();
+                seguirJugando = juego.preguntarParaVolverAJugar();
+            }
+        } catch (Exception e) {
+            System.err.println("❌ Error fatal: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if (juego != null) {
+                juego.cerrarScanner();
+            }
+            System.out.println("\n👋 ¡Gracias por jugar!");
+        }
     }
 }
