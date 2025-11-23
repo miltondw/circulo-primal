@@ -1,3 +1,25 @@
+**Circulo Primal**
+
+**Descripción**
+- **Proyecto:**: Implementación de un juego (Java) llamado "Circulo Primal".
+- **Propósito:**: Repositorio con lógica de dominio, servicios, manejo de excepciones y una UI simple.
+
+
+**Estructura del proyecto**
+- **`src/`**: Código fuente Java.
+  - **`App.java`**: Punto de entrada.
+  - **`domain/`**: Modelos de dominio (`Elemento.java`, `Jugador.java`, `ModoJuego.java`, etc.).
+  - **`services/`**: Lógica de servicios (`InputService.java`, `JuegoService.java`, `RondaService.java`, `ResultadoService.java`).
+  - **`exceptions/`**: Excepciones personalizadas (`ElementoInvalidoException.java`, `NombreInvalidoException.java`, `OpcionInvalidaException.java`).
+  - **`ui/`**: Servicios de interfaz (`UIService.java`).
+
+**Responsabilidades**
+- **UI:** Edwin
+- **Domain:** Emily
+- **Services:** Milton
+- **Exceptions:** Juan
+
+
 ## Círculo Primal – Batallas Elementales
 
 Juego de consola simple en Java inspirado en duelos por turnos al estilo Pokémon. Elige un elemento y enfréntate a oponentes controlados por la computadora. Gana varias batallas seguidas para potenciar a tu personaje.
@@ -39,43 +61,11 @@ Se lleva una racha de victorias por cada elemento que uses.
 
 ### Cómo Jugar
 Compila y ejecuta:
-
-```bash
-javac -d bin $(find src -name '*.java')
-java -cp bin App
-```
-
 Luego:
 1. Elige un elemento válido.
 2. En cada turno selecciona tipo de ataque: `r` o `e`.
 3. Observa las barras de vida y adapta tu estrategia.
 4. Decide si continuar tras cada batalla.
-
-### Ejemplo de Sesión
-```
-🔥💧🌪️🌍 Bienvenido al juego de los elementos (modo combate) 🌍🌪️💧🔥
-Elige un elemento (fuego, agua, aire, tierra): fuego
-Tu personaje: Elemento{nombre='fuego', hp=50/50, atk=12}
-Enemigo: Elemento{nombre='tierra', hp=50/50, atk=12}
-Elige ataque (r = rápido, e = elemental): r
-Tu rapido hace 21 de daño.
-...
-🏆 ¡Ganaste la batalla!
-¿Jugar otra batalla? (s/n): s
-```
-
-### Estructura del Proyecto
-
-```
-src/
-	App.java                # Punto de entrada
-	domain/Elemento.java    # Modelo del personaje + lógica de daño
-	services/JuegoService.java # Lógica del loop de juego y rachas
-```
-
-### Próximas Mejores Ideas (no implementadas aún)
-- Diferentes stats por elemento (ej: agua más HP, aire más precisión).
-- Ataques especiales con cooldown.
-- Guardar progreso de rachas en archivo.
+`
 
 ¡Disfruta y experimenta! Aporta ideas con un PR si quieres ampliar el juego.
