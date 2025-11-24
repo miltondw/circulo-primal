@@ -1,14 +1,18 @@
 # Archivos de clase compilados
 *.class
 
-# Paquetes
-*.jar
+# Paquetes (excluir lib/ de esta regla)
 *.war
 *.ear
 *.nar
 *.zip
 *.tar.gz
 *.rar
+
+# Bibliotecas nativas de JavaFX (específicas por SO)
+lib/*.so
+lib/*.dll
+lib/*.dylib
 
 # Logs
 *.log
