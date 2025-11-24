@@ -9,10 +9,16 @@
 *.tar.gz
 *.rar
 
-# Bibliotecas nativas de JavaFX (específicas por SO)
+# Bibliotecas nativas de JavaFX (específicas por SO) - EXCLUIR DE GIT
+# Estas se descargan automáticamente al ejecutar run-javafx.sh
 lib/*.so
 lib/*.dll
 lib/*.dylib
+lib/*.properties
+
+# Directorios de JavaFX SDK completos
+javafx-sdk-*/
+javafx-download/
 
 # Logs
 *.log
