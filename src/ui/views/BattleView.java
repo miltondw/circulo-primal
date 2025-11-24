@@ -1,5 +1,6 @@
-package ui;
+package ui.views;
 
+import ui.GameController;
 import domain.ElementoBatalla;
 import domain.ElementoBatalla.TipoAtaque;
 import javafx.animation.*;

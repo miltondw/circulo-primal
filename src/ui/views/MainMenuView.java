@@ -1,5 +1,6 @@
-package ui;
+package ui.views;
 
+import ui.GameController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,15 +40,24 @@ public class MainMenuView {
         description.setFont(Font.font("System", FontWeight.NORMAL, 24));
         description.setTextFill(Color.web("#aaa"));
 
-        // Botón de inicio
-        Button startButton = createMenuButton("⚔️ INICIAR BATALLA", "#e94560");
-        startButton.setOnAction(e -> controller.showElementSelection());
+        // Botón modo batalla infinita (actual)
+        Button battleModeButton = createMenuButton("⚔️ BATALLA INFINITA", "#e94560");
+        battleModeButton.setOnAction(e -> controller.showElementSelection());
+
+        // Botón modo torneo (vs Computadora)
+        Button tournamentButton = createMenuButton("🏆 TORNEO (vs CPU)", "#ff6b35");
+        tournamentButton.setOnAction(e -> controller.showTournamentSetup(false));
+
+        // Botón modo 2 jugadores
+        Button twoPlayersButton = createMenuButton("👥 2 JUGADORES", "#4ecdc4");
+        twoPlayersButton.setOnAction(e -> controller.showTournamentSetup(true));
 
         // Botón de salir
         Button exitButton = createMenuButton("🚪 SALIR", "#555");
         exitButton.setOnAction(e -> controller.exitGame());
 
-        root.getChildren().addAll(title, subtitle, description, startButton, exitButton);
+        root.getChildren().addAll(title, subtitle, description, battleModeButton, tournamentButton, twoPlayersButton,
+                exitButton);
     }
 
     private Button createMenuButton(String text, String color) {

@@ -1,5 +1,6 @@
 package ui;
 
+import ui.views.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
@@ -15,6 +16,8 @@ public class GameController {
     private MainMenuView mainMenuView;
     private ElementSelectionView elementSelectionView;
     private BattleView battleView;
+    private TournamentSetupView tournamentSetupView;
+    private ui.views.TournamentGameView tournamentGameView;
 
     public GameController(Stage stage, int width, int height) {
         this.stage = stage;
@@ -68,6 +71,35 @@ public class GameController {
             System.err.println("No se pudo cargar el CSS: " + e.getMessage());
         }
         stage.setScene(scene);
+    }
+
+    /**
+     * Muestra la pantalla de configuración del torneo
+     */
+    public void showTournamentSetup(boolean isTwoPlayers) {
+        tournamentSetupView = new TournamentSetupView(this, width, height, isTwoPlayers);
+        Scene scene = new Scene(tournamentSetupView.getRoot(), width, height);
+        try {
+            scene.getStylesheets().add(getClass().getResource("/resources/styles/game.css").toExternalForm());
+        } catch (Exception e) {
+            System.err.println("No se pudo cargar el CSS: " + e.getMessage());
+        }
+        stage.setScene(scene);
+    }
+
+    /**
+     * Muestra la pantalla del juego de torneo
+     */
+    public void showTournamentGame(String player1Name, String player2Name, int rounds) {
+        tournamentGameView = new ui.views.TournamentGameView(this, width, height);
+        Scene scene = new Scene(tournamentGameView.getRoot(), width, height);
+        try {
+            scene.getStylesheets().add(getClass().getResource("/resources/styles/game.css").toExternalForm());
+        } catch (Exception e) {
+            System.err.println("No se pudo cargar el CSS: " + e.getMessage());
+        }
+        stage.setScene(scene);
+        tournamentGameView.initTournament(player1Name, player2Name, rounds);
     }
 
     /**
